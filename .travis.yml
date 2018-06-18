@@ -46,6 +46,8 @@ script:
   - "python -c \"import glob,os,subprocess,sys; map(lambda p: (sys.stdout.write('Library example: %s\\n' % p), subprocess.call(['pio', 'ci', p, '--board', 'esp32dev'])), set([os.path.dirname(p) for p in glob.glob('libraries/*/examples/*/*.ino') + glob.glob('libraries/*/examples/*/*/*.ino')]))\""
   - echo -e "travis_fold:end:platformio_test"
 
+  - tools/check_cmakelists.sh
+
 notifications:
   email:
     on_success: change
